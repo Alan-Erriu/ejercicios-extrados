@@ -5,16 +5,23 @@ namespace ejercicios_extrados
 
     internal class Tablero
     {
-        private int[][] tablero;
+        enum Estados
+        {
+            Libre = 0,
+            Reina = 1
+
+        }
+
+        private Estados[][] tablero;
         private int n;
 
         public Tablero(int n)
         {
             this.n = n;
-            tablero = new int[n][];
+            tablero = new Estados[n][];
             for (int i = 0; i < n; i++)
             {
-                tablero[i] = new int[n];
+                tablero[i] = new Estados[n]; //cada vuelta agrega un array de 8 hasta llegar a 8 = 8x8
             }
         }
 
@@ -29,19 +36,19 @@ namespace ejercicios_extrados
             for (int i = 0; i < fila; i++)
             {
                 // Verificar si hay una reina en la misma columna
-                if (tablero[i][columna] == 1)
+                if (tablero[i][columna] == Estados.Reina)
                 {
                     return false;
                 }
 
                 // Verificar diagonal superior izquierda
-                if (columna - (fila - i) >= 0 && tablero[i][columna - (fila - i)] == 1)
+                if (columna - (fila - i) >= 0 && tablero[i][columna - (fila - i)] == Estados.Reina)
                 {
                     return false;
                 }
 
                 // Verificar diagonal superior derecha
-                if (columna + (fila - i) < n && tablero[i][columna + (fila - i)] == 1)
+                if (columna + (fila - i) < n && tablero[i][columna + (fila - i)] == Estados.Reina)
                 {
                     return false;
                 }
@@ -51,7 +58,7 @@ namespace ejercicios_extrados
 
         private bool ColocarReina(int fila)
         {
-            if (fila == n)
+            if (fila == n) //las filas son igual a la cantidad de reinas 8x8
             {
                 // Todas las reinas están colocadas, se encontró una solución
                 return true;
@@ -62,15 +69,15 @@ namespace ejercicios_extrados
                 if (EsSeguro(fila, columna))
                 {
                     // Colocar una reina en (fila, columna)
-                    tablero[fila][columna] = 1;
+                    tablero[fila][columna] = Estados.Reina;
 
                     // Intentar colocar las reinas restantes
                     if (ColocarReina(fila + 1))
                     {
-                        return true; // Se encontró una solución
+                        return true; // Se encontró una solución y fila se incrementa en 1
                     }
 
-                    // Si no se encontro una solución, retroceder
+                    // Si no se encontro una solución, retroceder, fila no incrementa su valor
                     tablero[fila][columna] = 0;
                 }
             }
