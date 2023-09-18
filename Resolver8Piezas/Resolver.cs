@@ -1,23 +1,22 @@
-﻿
-namespace ejercicios_extrados
+﻿using System;
+
+namespace Resolver8Piezas
 {
 
 
-    internal class Tablero
+    public class Resolver
     {
-        enum Estados
+
+
+        public IPiezaAjedrez pieza;
+        public Estados[][] tablero;
+        public int n = 8;
+
+
+        public Resolver(IPiezaAjedrez pieza)
         {
-            Libre = 0,
-            Reina = 1
 
-        }
-
-        private Estados[][] tablero;
-        private int n;
-
-        public Tablero(int n)
-        {
-            this.n = n;
+            this.pieza = pieza;
             tablero = new Estados[n][];
             for (int i = 0; i < n; i++)
             {
@@ -25,38 +24,14 @@ namespace ejercicios_extrados
             }
         }
 
-        public bool Resolver()
+        public bool Resolver2()
         {
             return ColocarReina(0);
         }
 
-        private bool EsSeguro(int fila, int columna)
-        {
 
-            for (int i = 0; i < fila; i++)
-            {
-                // Verificar si hay una reina en la misma columna
-                if (tablero[i][columna] == Estados.Reina)
-                {
-                    return false;
-                }
 
-                // Verificar diagonal superior izquierda
-                if (columna - (fila - i) >= 0 && tablero[i][columna - (fila - i)] == Estados.Reina)
-                {
-                    return false;
-                }
-
-                // Verificar diagonal superior derecha
-                if (columna + (fila - i) < n && tablero[i][columna + (fila - i)] == Estados.Reina)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        private bool ColocarReina(int fila)
+        public bool ColocarReina(int fila)
         {
             if (fila == n) //las filas son igual a la cantidad de reinas 8x8
             {
@@ -66,10 +41,10 @@ namespace ejercicios_extrados
 
             for (int columna = 0; columna < n; columna++)
             {
-                if (EsSeguro(fila, columna))
+                if (pieza.EsSeguro(fila, columna, tablero))
                 {
                     // Colocar una reina en (fila, columna)
-                    tablero[fila][columna] = Estados.Reina;
+                    tablero[fila][columna] = Estados.Ocupado;
 
                     // Intentar colocar las reinas restantes
                     if (ColocarReina(fila + 1))
@@ -100,9 +75,5 @@ namespace ejercicios_extrados
             Console.WriteLine();
         }
     }
-
 }
-
-
-
 
