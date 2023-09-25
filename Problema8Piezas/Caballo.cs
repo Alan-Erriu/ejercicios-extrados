@@ -12,7 +12,7 @@ namespace Problema8Piezas
             if (fila >= 0 && fila < n && columna >= 0 && columna < n)
             {
                 // Verifica si hay un caballlo
-                if (tablero[fila][columna] != Estados.Ocupado)
+                if (tablero[fila][columna] != Estados.Pieza)
                 {
                     return true;
                 }

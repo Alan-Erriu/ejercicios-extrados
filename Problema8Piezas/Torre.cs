@@ -12,7 +12,7 @@ namespace Problema8Piezas
             for (int i = 0; i < fila; i++)
             {
                 // Verificar si hay una reina en la misma columna
-                if (tablero[i][columna] == Estados.Ocupado)
+                if (tablero[i][columna] == Estados.Pieza)
                 {
                     return false;
                 }

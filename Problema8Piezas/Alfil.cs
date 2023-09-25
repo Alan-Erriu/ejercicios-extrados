@@ -15,13 +15,13 @@ namespace Problema8Piezas
 
 
                 // Verificar diagonal superior izquierda
-                if (columna - (fila - i) >= 0 && tablero[i][columna - (fila - i)] == Estados.Ocupado)
+                if (columna - (fila - i) >= 0 && tablero[i][columna - (fila - i)] == Estados.Pieza)
                 {
                     return false;
                 }
 
                 // Verificar diagonal superior derecha
-                if (columna + (fila - i) < n && tablero[i][columna + (fila - i)] == Estados.Ocupado)
+                if (columna + (fila - i) < n && tablero[i][columna + (fila - i)] == Estados.Pieza)
                 {
                     return false;
                 }

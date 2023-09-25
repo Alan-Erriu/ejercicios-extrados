@@ -44,7 +44,7 @@ namespace Resolver8Piezas
                 if (pieza.EsSeguro(fila, columna, tablero))
                 {
                     // Colocar una reina en (fila, columna)
-                    tablero[fila][columna] = Estados.Ocupado;
+                    tablero[fila][columna] = Estados.Pieza;
 
                     // Intentar colocar las reinas restantes
                     if (ColocarReina(fila + 1))

@@ -1,6 +1,4 @@
-﻿// crear librería solucionar8piezas
-// interfaz pieza
-// crear objetos pieza con un patron de movimiento
+﻿
 
 
 using Problema8Piezas;
@@ -15,11 +13,12 @@ Caballo caballo = new Caballo();
 
 
 
-Resolver tablero = new Resolver(peon);
+Resolver tablero = new Resolver(reina);
 
 if (tablero.Resolver2())
 {
-    Console.WriteLine("Solución encontrada para tipo de pieza: " + peon.tipoDePieza);
+    Console.WriteLine("Solución encontrada para tipo de pieza: " + reina.tipoDePieza);
+    Console.WriteLine("");
     tablero.ImprimirTablero();
 }
 else
